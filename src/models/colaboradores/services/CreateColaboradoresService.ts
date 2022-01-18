@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 
+import AppError from "../../../shared/errors/AppError";
 import Colaboradores from "../typeorm/entity";
 import ColaboradoresRepository from "../typeorm/repository";
 
@@ -16,6 +17,13 @@ class CreateColaboradoresService {
     cargo,
   }: IRequest): Promise<Colaboradores> {
     const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);
+    const colaboradorAlreadyExists =
+      await ColaboradorRepository.findByIdentificacao(identificacao);
+
+    if (colaboradorAlreadyExists) {
+      throw new AppError("Colaborador already exists", 500);
+    }
+
     const colaborador = await ColaboradorRepository.create({
       identificacao,
       nome: nome.trim().toUpperCase(),
