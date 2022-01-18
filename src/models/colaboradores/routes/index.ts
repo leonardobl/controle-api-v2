@@ -6,4 +6,6 @@ const ColaboradoresRoutes = express.Router();
 
 ColaboradoresRoutes.get("/", ColaboradoresController.index);
 
+ColaboradoresRoutes.post("/");
+
 export default ColaboradoresRoutes;
