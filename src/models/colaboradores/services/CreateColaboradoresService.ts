@@ -18,9 +18,10 @@ class CreateColaboradoresService {
     const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);
     const colaborador = await ColaboradorRepository.create({
       identificacao,
-      nome,
-      cargo,
+      nome: nome.trim().toUpperCase(),
+      cargo: cargo?.trim()?.toUpperCase(),
     });
+    ColaboradorRepository.save(colaborador);
     return colaborador;
   }
 }

@@ -3,15 +3,15 @@ import "./typeorm";
 import { errors } from "celebrate";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
-
 import "express-async-errors";
+
 import Routes from "./routes";
 import AppError from "./shared/errors/AppError";
 
 const app = express();
 
-app.use(Routes);
 app.use(express.json());
+app.use(Routes);
 app.use(cors());
 
 app.use(errors());
