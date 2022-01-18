@@ -1,0 +1,14 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": "3306",
+  "username": "root",
+  "password": "Magazine123",
+  "database": "controle_api",
+  "cli": {
+    "entitiesDir": "src/models/**/typeorm/entity",
+    "migrationsDir": "src/typeorm/migrations"
+  },
+  "entities": ["src/models/**/typeorm/entity/*.ts"],
+  "migrations": ["src/typeorm/migrations/*.ts"]
+}
