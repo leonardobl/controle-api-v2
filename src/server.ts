@@ -11,7 +11,7 @@ import AppError from "./shared/errors/AppError";
 const app = express();
 
 app.use(express.json());
-app.use(Routes);
+app.use("/api", Routes);
 app.use(cors());
 
 app.use(errors());
