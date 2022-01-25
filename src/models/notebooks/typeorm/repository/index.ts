@@ -10,6 +10,13 @@ class NotebooksRepository extends Repository<Notebooks> {
     const notebook = await this.findOne({ where: { numeroPatrimonio } });
     return notebook;
   }
+
+  public async findByNumeroSerio(
+    numeroSerie: string
+  ): Promise<Notebooks | undefined> {
+    const notebook = await this.findOne({ where: { numeroSerie } });
+    return notebook;
+  }
 }
 
 export default NotebooksRepository;
