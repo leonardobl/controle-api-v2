@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 
 import Celulares from "../../../celulares/typeorm/entity";
+import Notebooks from "../../../notebooks/typeorm/entity";
 
 @Entity("colaboradores")
 class Colaboradores {
@@ -30,9 +31,13 @@ class Colaboradores {
   @Column({ type: "varchar", nullable: true })
   password: string;
 
-  @OneToOne(() => Celulares)
+  @OneToOne(() => Celulares, { eager: true })
   @JoinColumn()
-  celularId: Celulares;
+  celular: Celulares;
+
+  @OneToOne(() => Notebooks, { eager: true })
+  @JoinColumn()
+  notebook: Notebooks;
 
   @Column("varchar")
   nome: string;
