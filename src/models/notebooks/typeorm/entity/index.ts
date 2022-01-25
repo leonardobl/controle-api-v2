@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("celulares")
-class Celulares {
+@Entity("notebooks")
+class Notebooks {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -23,8 +23,11 @@ class Celulares {
   @Column("varchar")
   modelo: string;
 
-  @Column("varchar")
-  imeis: string[];
+  @Column({ type: "varchar", nullable: true })
+  numeroPatrimonio: string;
+
+  @Column({ type: "varchar", nullable: true })
+  numeroSerie: string;
 
   @CreateDateColumn({ type: "timestamp with time zone" })
   created_at: Date;
@@ -33,4 +36,4 @@ class Celulares {
   updated_at: Date;
 }
 
-export default Celulares;
+export default Notebooks;
