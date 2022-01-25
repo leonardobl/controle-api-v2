@@ -1,22 +1,50 @@
 {
   "openapi": "3.0.0",
   "info" : {
-    "title" : "Controle de acesso",
-    "description" : "Api de controle de acesso/saida de equipamentos / controle de chaves",
+    "title" : "API de controle",
+    "description" :  "API de controle de acesso equipamentos / controle de chaves",
     "version" : "2.0.0"
   },
-  "basePath": "/api",
-  "paths": {
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Default"
+    } 
+  ],
+  "paths" : {
     "/colaboradores" : {
-      "get" : {
-        "parameters" :  {
-          "in" : "query" ,
-          "name" : "nome",
-          "type": "string"
+      "post" : {
+        "description": "Rota de criação de colaboradores",
+        "requestBody" : {
+          "type": "object",
+          "required" : ["name"]
+        },
+        "responses": {
+          "200": {          
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/colaboradores"
+                  }
+                }
+              }
+            }
+          }
         }
       }
+      
     }
-    
-  }
+  },
 
+
+  "components" : {
+    "schemas" : {
+      "parameters" : {
+        
+      }
+    }
+  }
 }
