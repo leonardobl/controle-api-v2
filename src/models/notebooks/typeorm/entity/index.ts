@@ -6,25 +6,28 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity("celulares")
-export class Celular {
+@Entity("notebooks")
+class Notebooks {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "string", nullable: true })
+  @Column({ type: "varchar", nullable: true })
   imgName: string;
 
-  @Column({ type: "string", nullable: true })
+  @Column({ type: "varchar", nullable: true })
   imgPath: string;
 
-  @Column("string")
-  nome: string;
+  @Column("varchar")
+  marca: string;
 
-  @Column("string")
+  @Column("varchar")
   modelo: string;
 
-  @Column("string")
-  imeis: string[];
+  @Column({ type: "varchar", nullable: true })
+  numeroPatrimonio: string;
+
+  @Column({ type: "varchar", nullable: true })
+  numeroSerie: string;
 
   @CreateDateColumn({ type: "timestamp with time zone" })
   created_at: Date;
@@ -32,3 +35,5 @@ export class Celular {
   @UpdateDateColumn({ type: "timestamp with time zone" })
   updated_at: Date;
 }
+
+export default Notebooks;
