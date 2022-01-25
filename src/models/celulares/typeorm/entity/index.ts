@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity("celulares")
-export class Celular {
+class Celulares {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -32,3 +32,5 @@ export class Celular {
   @UpdateDateColumn({ type: "timestamp with time zone" })
   updated_at: Date;
 }
+
+export default Celulares;

@@ -2,9 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
+  JoinColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+
+import Celulares from "../../../celulares/typeorm/entity";
 
 @Entity("colaboradores")
 class Colaboradores {
@@ -13,6 +17,22 @@ class Colaboradores {
 
   @Column("varchar")
   identificacao: string;
+
+  @Column({ type: "varchar", nullable: true })
+  imgName: string;
+
+  @Column({ type: "varchar", nullable: true })
+  imgPath: string;
+
+  @Column({ type: "varchar", nullable: true })
+  username: string;
+
+  @Column({ type: "varchar", nullable: true })
+  password: string;
+
+  @OneToOne(() => Celulares)
+  @JoinColumn()
+  celularId: Celulares;
 
   @Column("varchar")
   nome: string;
