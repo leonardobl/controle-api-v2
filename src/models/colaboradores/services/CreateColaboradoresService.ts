@@ -16,19 +16,27 @@ class CreateColaboradoresService {
     nome,
     cargo,
   }: IRequest): Promise<Colaboradores> {
-    const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);
-    const colaboradorAlreadyExists =
-      await ColaboradorRepository.findByIdentificacao(identificacao);
+    const data = {} as IRequest;
 
-    if (colaboradorAlreadyExists) {
-      throw new AppError("Colaborador already exists", 500);
-    }
-
-    const colaborador = await ColaboradorRepository.create({
+    Object.assign(data, {
       identificacao,
       nome: nome.trim().toUpperCase(),
       cargo: cargo?.trim()?.toUpperCase(),
     });
+
+    const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);
+
+    const identificacaoAlreadyExists =
+      await ColaboradorRepository.findByIdentificacao(data.identificacao);
+
+    if (identificacaoAlreadyExists)
+      throw new AppError("identity already exists");
+
+    const nameAlreadyExists = await ColaboradorRepository.findByName(data.nome);
+
+    if (nameAlreadyExists) throw new AppError("Name already exists");
+
+    const colaborador = await ColaboradorRepository.create({ ...data });
     ColaboradorRepository.save(colaborador);
     return colaborador;
   }
