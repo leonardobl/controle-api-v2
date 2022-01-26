@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 
+import AppError from "../../../shared/errors/AppError";
 import Celulares from "../../celulares/typeorm/entity";
 import Notebooks from "../../notebooks/typeorm/entity";
 import Colaboradores from "../typeorm/entity";
@@ -24,5 +25,11 @@ class UpdateColaboradorService {
       ColaboradoresRepository
     );
     const colaborador = await colaboradoresRepository.findById(data.id);
+    if (!colaborador) throw new AppError("id not found");
+    await colaboradoresRepository.merge(colaborador, data);
+    await colaboradoresRepository.save(colaborador);
+    return colaborador;
   }
 }
+
+export default new UpdateColaboradorService();
