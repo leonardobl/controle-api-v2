@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 
+import AppError from "../../../shared/errors/AppError";
 import Celulares from "../typeorm/entity";
 import { CelularesCustomRespository } from "../typeorm/repository";
 
@@ -14,6 +15,11 @@ interface IRequest {
 class CreateCelularService {
   public async execute(data: IRequest): Promise<Celulares> {
     const celularesRepository = getCustomRepository(CelularesCustomRespository);
+
+    const imeiAlreadyExists = await celularesRepository.findByImei(data.imeis);
+
+    if (imeiAlreadyExists) throw new AppError("IMEI already exists");
+
     const celular = await celularesRepository.create(data);
     await celularesRepository.save(celular);
     return celular;
