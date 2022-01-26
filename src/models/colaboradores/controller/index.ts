@@ -18,7 +18,7 @@ class ColaboradoresControllers {
   }
 
   async update(req: Request, res: Response): Promise<Response> {
-    const colaborador = await UpdateColaboradorService.execute(req.body);
+    const colaborador = await UpdateColaboradorService.execute(req);
     return res.status(200).json(colaborador);
   }
 }

@@ -8,4 +8,4 @@ ColaboradoresRoutes.get("/", ColaboradoresController.index);
 
 ColaboradoresRoutes.post("/", ColaboradoresController.create);
 
-ColaboradoresRoutes.put("/", ColaboradoresController.update);
+ColaboradoresRoutes.put("/:id", ColaboradoresController.update);
