@@ -17,6 +17,11 @@ class ColaboradoresRepository extends Repository<ColaboradoresEntity> {
     const colaborador = await this.findOne({ where: { nome } });
     return colaborador;
   }
+
+  public async findById(id: string): Promise<ColaboradoresEntity | undefined> {
+    const colaborador = await this.findOne({ where: { id } });
+    return colaborador;
+  }
 }
 
 export default ColaboradoresRepository;
