@@ -3,7 +3,7 @@ import { EntityRepository, Repository } from "typeorm";
 import Notebooks from "../entity";
 
 @EntityRepository(Notebooks)
-class NotebooksRepository extends Repository<Notebooks> {
+class NotebooksCustomRepository extends Repository<Notebooks> {
   public async findByNumeroPatrimonio(
     numeroPatrimonio: string
   ): Promise<Notebooks | undefined> {
@@ -19,4 +19,4 @@ class NotebooksRepository extends Repository<Notebooks> {
   }
 }
 
-export default NotebooksRepository;
+export default NotebooksCustomRepository;
