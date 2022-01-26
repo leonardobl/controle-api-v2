@@ -4,4 +4,5 @@ import NotebooksController from "../controller";
 
 export const NotebooksRoutes = express.Router();
 
-NotebooksRoutes.post("/", NotebooksController.index);
+NotebooksRoutes.get("/", NotebooksController.index);
+NotebooksRoutes.post("/", NotebooksController.create);
