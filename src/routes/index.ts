@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import ColaboradoresRoutes from "../models/colaboradores/routes";
+import ColaboradoresRoutes from "../models/colaboradores/routes/Colaboradores.routes";
 
 export const Routes = Router();
 
