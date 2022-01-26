@@ -8,4 +8,6 @@ ColaboradoresRoutes.get("/", ColaboradoresController.index);
 
 ColaboradoresRoutes.post("/", ColaboradoresController.create);
 
+ColaboradoresRoutes.put("/", ColaboradoresController.update);
+
 export default ColaboradoresRoutes;
