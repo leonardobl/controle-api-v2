@@ -26,7 +26,7 @@ class UpdateColaboradorService {
     );
     const colaborador = await colaboradoresRepository.findById(data.id);
     if (!colaborador) throw new AppError("id not found");
-    await colaboradoresRepository.merge(colaborador, data);
+    colaboradoresRepository.merge(colaborador, data);
     await colaboradoresRepository.save(colaborador);
     return colaborador;
   }
