@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import CreateColaboradoresService from "../services/CreateColaboradoresService";
 import IndexColaboradoresService from "../services/IndexColaboradoresService";
 
-class ColaboradoresController {
+class ColaboradoresControllers {
   async index(req: Request, res: Response): Promise<Response> {
     const colaboradores = await IndexColaboradoresService.execute();
     return res.json(colaboradores);
@@ -17,4 +17,4 @@ class ColaboradoresController {
   }
 }
 
-export default new ColaboradoresController();
+export default new ColaboradoresControllers();
