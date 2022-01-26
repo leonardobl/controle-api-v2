@@ -15,6 +15,11 @@ class ColaboradoresController {
     });
     return res.status(201).json(colaborador);
   }
+
+  async update(req: Request, res: Response): Promise<Response> {
+    const colaborador = await UpdateColaboradorService.execut(req.body);
+    return res.status(200).json(colaborador);
+  }
 }
 
 export default new ColaboradoresController();
