@@ -14,7 +14,7 @@ class Imeis {
   @Column("varchar")
   imei1: string;
 
-  @Column("varchar")
+  @Column("varchar", { nullable: true })
   imei2: string;
 
   @CreateDateColumn({ type: "timestamp with time zone" })
