@@ -5,25 +5,19 @@ import AppError from "../../../shared/errors/AppError";
 import Imeis from "../typeorm/entity";
 import { ImeisCustomRepository } from "../typeorm/repository";
 
-interface IImei {
-  imei1: string;
-  imei2?: string;
-}
-class CreateImeisService {
+class CreateImeisByCelularService {
   public async execute(req: Request): Promise<Imeis | undefined> {
-    const data = {} as IImei;
-    Object.assign(data, req.body);
     const imeisRepository = getCustomRepository(ImeisCustomRepository);
-    let isImei = await imeisRepository.findByImei(data.imei1);
-    if (!isImei && data.imei2) {
-      isImei = await imeisRepository.findByImei(data.imei2);
+    let isImei = await imeisRepository.findByImei(req.params.imei1);
+    if (!isImei && req.params.imei2) {
+      isImei = await imeisRepository.findByImei(req.params.imei2);
     }
     if (isImei) throw new AppError("Imei already exists");
 
-    const imei = await imeisRepository.create(data);
+    const imei = await imeisRepository.create({ ...req.params });
     await imeisRepository.save(imei);
     return imei;
   }
 }
 
-export default new CreateImeisService();
+export default new CreateImeisByCelularService();

@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { getCustomRepository } from "typeorm";
 
-import CreateImeisService from "../../imeis/services/CreateImeisService";
+import CreateImeisByCelularService from "../../imeis/services/CreateImeisByCelularService";
 import Imeis from "../../imeis/typeorm/entity";
 import Celulares from "../typeorm/entity";
 import { CelularesCustomRespository } from "../typeorm/repository";
@@ -18,7 +18,7 @@ class CreateCelularService {
   public async execute(req: Request): Promise<Celulares> {
     const celularesRepository = getCustomRepository(CelularesCustomRespository);
 
-    const imeis = await CreateImeisService.execute(req);
+    const imeis = await CreateImeisByCelularService.execute(req);
 
     const data = {} as ICelular;
 
