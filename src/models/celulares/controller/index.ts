@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import CreateCelularService from "../services/CreateCelularService";
 import IndexCelularesService from "../services/IndexCelularesService";
+import UpdateCelularService from "../services/UpdateCelularService";
 
 class CelularesControllers {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -12,6 +13,11 @@ class CelularesControllers {
   public async create(req: Request, res: Response): Promise<Response> {
     const celular = await CreateCelularService.execute(req);
     return res.status(201).json(celular);
+  }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const celularUpdated = await UpdateCelularService.execute(req);
+    return res.status(200).json(celularUpdated);
   }
 }
 

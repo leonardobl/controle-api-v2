@@ -5,9 +5,15 @@ import DeleteImeisService from "../services/DeleteImeisService";
 import IndexImeisService from "../services/IndexImeisService";
 import UpdateImeiService from "../services/UpdateImeiService";
 
+interface IImei {
+  imei1: string;
+  imei2?: string;
+}
 class ImeisControllers {
   public async create(req: Request, res: Response): Promise<Response> {
-    const imei = await CreateImeisService.execute(req);
+    const data = {} as IImei;
+    Object.assign(data, req.body);
+    const imei = await CreateImeisService.execute(data);
     return res.status(201).json(imei);
   }
 

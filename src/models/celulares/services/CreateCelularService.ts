@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { getCustomRepository } from "typeorm";
 
-import CreateImeisByCelularService from "../../imeis/services/CreateImeisByCelularService";
+import CreateImeisService from "../../imeis/services/CreateImeisService";
 import Imeis from "../../imeis/typeorm/entity";
 import Celulares from "../typeorm/entity";
 import { CelularesCustomRespository } from "../typeorm/repository";
@@ -14,13 +14,20 @@ interface ICelular {
   imeis: Imeis;
 }
 
+interface IImei {
+  imei1: string;
+  imei2?: string;
+}
 class CreateCelularService {
   public async execute(req: Request): Promise<Celulares> {
+    const dataImeis = {} as IImei;
+    const data = {} as ICelular;
+
+    Object.assign(dataImeis, req.params);
+
     const celularesRepository = getCustomRepository(CelularesCustomRespository);
 
-    const imeis = await CreateImeisByCelularService.execute(req);
-
-    const data = {} as ICelular;
+    const imeis = await CreateImeisService.execute(dataImeis);
 
     Object.assign(data, { ...req.body, imeis });
 

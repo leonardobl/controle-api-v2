@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { getCustomRepository } from "typeorm";
 
 import AppError from "../../../shared/errors/AppError";
@@ -10,9 +9,7 @@ interface IImei {
   imei2?: string;
 }
 class CreateImeisService {
-  public async execute(req: Request): Promise<Imeis | undefined> {
-    const data = {} as IImei;
-    Object.assign(data, req.body);
+  public async execute(data: IImei): Promise<Imeis | undefined> {
     const imeisRepository = getCustomRepository(ImeisCustomRepository);
     let isImei = await imeisRepository.findByImei(data.imei1);
     if (!isImei && data.imei2) {

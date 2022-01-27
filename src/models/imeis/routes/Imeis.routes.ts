@@ -8,7 +8,7 @@ const ImeisRoutes = express.Router();
 ImeisRoutes.post(
   "/",
   celebrate({
-    [Segments.PARAMS]: {
+    [Segments.BODY]: {
       imei1: Joi.string().required(),
       imei2: Joi.string(),
     },
