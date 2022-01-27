@@ -8,7 +8,7 @@ class DeleteCelularService {
     const celularRepository = getCustomRepository(CelularesCustomRespository);
     const celular = await celularRepository.findOne({ where: { id } });
     if (!celular) throw new AppError("Celular not found");
-    await celularRepository.remove(celular);
+    await celularRepository.softRemove(celular);
   }
 }
 
