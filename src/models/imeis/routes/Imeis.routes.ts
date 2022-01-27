@@ -8,4 +8,6 @@ ImeisRoutes.post("/:imei1/:imei2?", ImeisControllers.create);
 
 ImeisRoutes.get("/", ImeisControllers.index);
 
+ImeisRoutes.put("/", ImeisControllers.update);
+
 export default ImeisRoutes;
