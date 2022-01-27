@@ -10,7 +10,7 @@ class CelularesControllers {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const celular = await CreateCelularService.execute(req.body);
+    const celular = await CreateCelularService.execute(req);
     return res.status(201).json(celular);
   }
 }

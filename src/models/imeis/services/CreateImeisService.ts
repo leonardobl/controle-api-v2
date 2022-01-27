@@ -15,6 +15,7 @@ class CreateImeisService {
     if (isImei) throw new AppError("Imei already exists");
 
     const imei = await imeisRepository.create({ ...req.params });
+    await imeisRepository.save(imei);
     return imei;
   }
 }

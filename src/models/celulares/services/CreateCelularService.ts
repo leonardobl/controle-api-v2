@@ -1,26 +1,30 @@
+import { Request } from "express";
 import { getCustomRepository } from "typeorm";
 
-import AppError from "../../../shared/errors/AppError";
+import CreateImeisService from "../../imeis/services/CreateImeisService";
+import Imeis from "../../imeis/typeorm/entity";
 import Celulares from "../typeorm/entity";
 import { CelularesCustomRespository } from "../typeorm/repository";
 
-interface IRequest {
+interface ICelular {
   imgName?: string;
   imgPath?: string;
   marca: string;
   modelo: string;
-  imeis: string[];
+  imeis: Imeis;
 }
 
 class CreateCelularService {
-  public async execute(data: IRequest): Promise<Celulares> {
+  public async execute(req: Request): Promise<Celulares> {
     const celularesRepository = getCustomRepository(CelularesCustomRespository);
 
-    const imeiAlreadyExists = await celularesRepository.findByImei(data.imeis);
+    const imeis = await CreateImeisService.execute(req);
 
-    if (imeiAlreadyExists) throw new AppError("IMEI already exists");
+    const data = {} as ICelular;
 
-    const celular = await celularesRepository.create(data);
+    Object.assign(data, { ...req.body, imeis });
+
+    const celular = celularesRepository.create(data);
     await celularesRepository.save(celular);
     return celular;
   }
