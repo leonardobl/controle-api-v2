@@ -7,6 +7,11 @@ class ImeisControllers {
     const imei = await CreateImeisService.execute(req);
     return res.status(201).json(imei);
   }
+
+  public async index(req: Request, res: Response): Promise<Response> {
+    const imeis = await IndexImeisService.execute();
+    return res.status(200).json(imeis);
+  }
 }
 
 export default new ImeisControllers();
