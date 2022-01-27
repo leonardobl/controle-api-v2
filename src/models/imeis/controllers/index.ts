@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import CreateImeisService from "../services/CreateImeisService";
+import IndexImeisService from "../services/IndexImeisService";
 
 class ImeisControllers {
   public async create(req: Request, res: Response): Promise<Response> {
