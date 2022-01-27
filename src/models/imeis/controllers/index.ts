@@ -13,6 +13,11 @@ class ImeisControllers {
     const imeis = await IndexImeisService.execute();
     return res.status(200).json(imeis);
   }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const imeiUpdated = await UpdateImeiService.execute(req);
+    return res.status(200).json(imeiUpdated);
+  }
 }
 
 export default new ImeisControllers();
