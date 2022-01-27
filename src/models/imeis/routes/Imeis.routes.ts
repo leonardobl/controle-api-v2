@@ -20,4 +20,6 @@ ImeisRoutes.get("/", ImeisControllers.index);
 
 ImeisRoutes.put("/:id", ImeisControllers.update);
 
+ImeisRoutes.delete("/:id", ImeisControllers.delete);
+
 export default ImeisRoutes;

@@ -15,9 +15,6 @@ export class ImeisCustomRepository extends Repository<Imeis> {
     Id: string,
     Imei: string
   ): Promise<Imeis | undefined> {
-    console.log(`id : ${Id}`);
-    console.log(`Imei : ${Imei}`);
-
     const conflict = await this.findOne({
       where: [
         { id: Not(Id), imei1: Imei },

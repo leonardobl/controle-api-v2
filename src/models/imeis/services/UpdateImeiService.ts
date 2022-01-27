@@ -23,10 +23,6 @@ class UpdateImeiService {
       isImei = await imeisRepository.findForConflict(id, newDatas.imei2);
     }
 
-    console.log("----------------------------------------------");
-    console.log(isImei);
-    console.log("----------------------------------------------");
-
     if (isImei) throw new AppError("Imei already existis");
 
     const imeiOld = await imeisRepository.findById(id);
