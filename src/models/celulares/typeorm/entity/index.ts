@@ -4,7 +4,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
+
+import Imeis from "../../../imeis/typeorm/entity";
 
 @Entity("celulares")
 class Celulares {
@@ -23,8 +27,9 @@ class Celulares {
   @Column("varchar")
   modelo: string;
 
-  @Column("varchar")
-  imeis: string[];
+  @OneToOne(() => Imeis, { eager: true })
+  @JoinColumn()
+  imeis: Imeis;
 
   @CreateDateColumn({ type: "timestamp with time zone" })
   created_at: Date;
