@@ -10,4 +10,6 @@ CelularesRoutes.get("/:imei1/:imei2?", CelularesControllers.create);
 
 CelularesRoutes.put("/", CelularesControllers.update);
 
+CelularesRoutes.delete("/:id", CelularesControllers.delete);
+
 export default CelularesRoutes;
