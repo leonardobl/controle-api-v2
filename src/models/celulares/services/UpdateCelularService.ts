@@ -21,6 +21,11 @@ class UpdateCelularService {
     console.log(req.file);
     console.log(newData);
 
+    if (req.file) {
+      newData.imgName = req.file.filename;
+      newData.imgPath = req.file.path;
+    }
+
     const celularRepository = getCustomRepository(CelularesCustomRespository);
     const celularOld = await celularRepository.findOne({
       where: { id: newData.id },

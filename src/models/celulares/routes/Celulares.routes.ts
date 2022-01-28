@@ -1,6 +1,6 @@
 import express from "express";
 
-import multerMiddleware from "../../../shared/configs/multerConfig";
+import multerMiddleware from "../../../shared/middlewares/multerConfig";
 import CelularesControllers from "../controller";
 
 const CelularesRoutes = express.Router();
