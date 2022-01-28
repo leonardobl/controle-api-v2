@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class controleApiMigrations1643315600439 implements MigrationInterface {
-    name = 'controleApiMigrations1643315600439'
+export class controleApi1643327473627 implements MigrationInterface {
+    name = 'controleApi1643327473627'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "imeis" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "imei1" character varying NOT NULL, "imei2" character varying, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(), "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(), CONSTRAINT "PK_32545738e2097990e7123f73abc" PRIMARY KEY ("id"))`);
