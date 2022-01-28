@@ -1,16 +1,23 @@
+import crypto from "crypto";
+import { Request } from "express";
 import multer from "multer";
 import path from "path";
 
 const storage = multer.diskStorage({
-  destination(req, file, cb) {
+  destination(req: Request, file, cb) {
     cb(
       null,
       path.resolve(__dirname, "..", "..", "..", "public", "img", "uploads")
     );
   },
   filename(req, file, cb) {
-    cb(null, `${file.fieldname}-${Date.now()}`);
+    const newName =
+      crypto.randomBytes(16).toString("hex") +
+      file.originalname.replace(/\s/g, "");
+    cb(null, newName);
   },
 });
 
-export default storage;
+const multerMiddleware = multer({ storage });
+
+export default multerMiddleware;

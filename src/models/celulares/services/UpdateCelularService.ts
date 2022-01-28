@@ -9,12 +9,18 @@ interface ICelular {
   id: string;
   marca?: string;
   molelo?: string;
+  imgName?: string;
+  imgPath?: string;
 }
 
 class UpdateCelularService {
   public async execute(req: Request): Promise<Celulares> {
     const newData = {} as ICelular;
     Object.assign(newData, req.body);
+
+    console.log(req.file);
+    console.log(newData);
+
     const celularRepository = getCustomRepository(CelularesCustomRespository);
     const celularOld = await celularRepository.findOne({
       where: { id: newData.id },
