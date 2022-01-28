@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const newName = `${crypto
-      .randomBytes(16)
+      .randomBytes(8)
       .toString("hex")}-${file.originalname.replace(/\s/g, "")}`;
     cb(null, newName);
   },

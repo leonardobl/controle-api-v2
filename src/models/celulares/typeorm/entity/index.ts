@@ -27,7 +27,7 @@ class Celulares {
   @Column("varchar")
   modelo: string;
 
-  @OneToOne(() => Imeis, { eager: true, cascade: true, onDelete: "CASCADE" })
+  @OneToOne(() => Imeis, { eager: true, cascade: true, onUpdate: "CASCADE" })
   @JoinColumn()
   imeis: Imeis;
 
