@@ -21,4 +21,6 @@ ColaboradoresRoutes.put(
   ColaboradoresController.update
 );
 
+ColaboradoresRoutes.delete("/:id", ColaboradoresController.delete);
+
 export default ColaboradoresRoutes;
