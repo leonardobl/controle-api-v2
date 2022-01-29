@@ -26,7 +26,11 @@ class NotebooksControllers {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const data = {} as INotebook;
-    Object.assign(data, { ...req.params, ...req.body, req?.file });
+    Object.assign(data, { ...req.params, ...req.body });
+    if (req.file) {
+      data.imgName = req.file.filename;
+      data.imgPath = req.file.path;
+    }
 
     const notebookUpdated = await UpdateNotebookService(data);
     return res.status(201).json(notebookUpdated);
