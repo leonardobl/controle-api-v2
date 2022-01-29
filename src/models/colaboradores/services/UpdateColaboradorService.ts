@@ -1,7 +1,9 @@
 import { getCustomRepository } from "typeorm";
 
 import AppError from "../../../shared/errors/AppError";
+import removeFile, { verify } from "../../../shared/functions/removeFiles";
 import Celulares from "../../celulares/typeorm/entity";
+import { CelularesCustomRespository } from "../../celulares/typeorm/repository";
 import Notebooks from "../../notebooks/typeorm/entity";
 import NotebooksCustomRepository from "../../notebooks/typeorm/repository";
 import Colaboradores from "../typeorm/entity";
@@ -60,6 +62,25 @@ class UpdateColaboradorService {
         colaboradorOld.notebook = null;
       }
     }
+
+    if (data.celular) {
+      const celularRepository = getCustomRepository(CelularesCustomRespository);
+      const celular = await celularRepository.findOne({
+        where: { id: data.celular },
+      });
+
+      if (!celular) throw new AppError("Celular not found");
+      newData.celular = celular;
+    }
+
+    if (!data.celular) {
+      if (colaboradorOld.celular) {
+        colaboradorOld.celular = null;
+      }
+    }
+
+    if (await verify(colaboradorOld.imgPath))
+      await removeFile(colaboradorOld.imgPath);
 
     const newColaboradeor = await colaboradoresRepository.merge(
       colaboradorOld,
