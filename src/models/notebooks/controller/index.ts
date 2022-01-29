@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import CreateNotebookService from "../services/CreateNotebookService";
 import IndexNotebookService from "../services/IndexNotebooksService";
+import UpdateNotebookService from "../services/UpdateNotebookService";
 
 interface INotebook {
   id: string;
@@ -32,7 +33,7 @@ class NotebooksControllers {
       data.imgPath = req.file.path;
     }
 
-    const notebookUpdated = await UpdateNotebookService(data);
+    const notebookUpdated = await UpdateNotebookService.execute(data);
     return res.status(201).json(notebookUpdated);
   }
 }
