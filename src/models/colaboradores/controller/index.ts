@@ -40,6 +40,11 @@ class ColaboradoresControllers {
     const colaborador = await UpdateColaboradorService.execute(data);
     return res.status(200).json(colaborador);
   }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    await DeleteColaboradorService.execute(id);
+  }
 }
 
 export default new ColaboradoresControllers();
