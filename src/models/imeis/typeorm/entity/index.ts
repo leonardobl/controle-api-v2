@@ -20,8 +20,8 @@ class Imeis {
   @Column("varchar", { nullable: true })
   imei2: string;
 
-  // @OneToOne(() => Celulares, { onUpdate: "CASCADE" })
-  // celular: Celulares;
+  @OneToOne(() => Celulares)
+  celular: Celulares;
 
   @CreateDateColumn({ type: "timestamp with time zone" })
   created_at: Date;
