@@ -36,6 +36,12 @@ class NotebooksControllers {
     const notebookUpdated = await UpdateNotebookService.execute(data);
     return res.status(201).json(notebookUpdated);
   }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    await DeleteNotebookService.execute(id);
+    return res.status(200).json([]);
+  }
 }
 
 export default new NotebooksControllers();
