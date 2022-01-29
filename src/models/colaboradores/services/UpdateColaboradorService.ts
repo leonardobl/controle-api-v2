@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { getCustomRepository } from "typeorm";
 
 import AppError from "../../../shared/errors/AppError";
@@ -39,12 +40,22 @@ class UpdateColaboradorService {
   public async execute(data: IColaborador): Promise<Colaboradores> {
     const newData = {} as IUpdateColaborador;
 
+    Object.assign(newData, data);
+
+    if (data.password) {
+      newData.password = await bcrypt.hash(data.password, 8);
+    }
+
     const colaboradoresRepository = getCustomRepository(
       ColaboradoresRepository
     );
 
     const colaboradorOld = await colaboradoresRepository.findById(newData.id);
-    if (!colaboradorOld) throw new AppError("colaborador not found");
+    if (!colaboradorOld) {
+      if (newData.imgPath && (await verify(newData.imgPath)))
+        await removeFile(newData.imgPath);
+      throw new AppError("colaborador not found");
+    }
 
     if (data.notebook) {
       const notebookRepository = getCustomRepository(NotebooksCustomRepository);

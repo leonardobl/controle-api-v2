@@ -35,12 +35,7 @@ class ColaboradoresControllers {
 
   async update(req: Request, res: Response): Promise<Response> {
     const data = {} as IColaborador;
-    console.log(data);
-    Object.assign(data, {
-      password: bcrypt.hash(req.body?.password, 8),
-      ...req.body,
-      ...req.params,
-    });
+    Object.assign(data, { ...req.body, ...req.params });
     if (req.file) {
       data.imgName = req.file.filename;
       data.imgPath = req.file.path;
