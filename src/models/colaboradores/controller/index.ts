@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
 import CreateColaboradoresService from "../services/CreateColaboradoresService";
@@ -34,11 +35,17 @@ class ColaboradoresControllers {
 
   async update(req: Request, res: Response): Promise<Response> {
     const data = {} as IColaborador;
-    Object.assign(data, { ...req.body, ...req.params });
+    console.log(data);
+    Object.assign(data, {
+      password: bcrypt.hash(req.body?.password, 8),
+      ...req.body,
+      ...req.params,
+    });
     if (req.file) {
       data.imgName = req.file.filename;
       data.imgPath = req.file.path;
     }
+
     const colaborador = await UpdateColaboradorService.execute(data);
     return res.status(200).json(colaborador);
   }

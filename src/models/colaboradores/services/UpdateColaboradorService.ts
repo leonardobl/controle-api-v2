@@ -38,7 +38,6 @@ interface IUpdateColaborador {
 class UpdateColaboradorService {
   public async execute(data: IColaborador): Promise<Colaboradores> {
     const newData = {} as IUpdateColaborador;
-    Object.assign(newData, data);
 
     const colaboradoresRepository = getCustomRepository(
       ColaboradoresRepository
