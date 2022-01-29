@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import CreateColaboradoresService from "../services/CreateColaboradoresService";
 import DeleteColaboradorService from "../services/DeleteColaboradorService";
+import FindForNameOrIdentityColaboradorService from "../services/FindForNameOrIdentityColaboradorService";
 import IndexColaboradoresService from "../services/IndexColaboradoresService";
 import UpdateColaboradorService from "../services/UpdateColaboradorService";
 
@@ -52,8 +53,10 @@ class ColaboradoresControllers {
     req: Request,
     res: Response
   ): Promise<Response> {
-    const data = req.params.data.trim();
-    const colaborador = await FindForNameOrIdentity.execute(data);
+    const { data } = req.params;
+    const colaborador = await FindForNameOrIdentityColaboradorService.execute(
+      data
+    );
     return res.status(200).json(colaborador);
   }
 }
