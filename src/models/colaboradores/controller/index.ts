@@ -47,6 +47,15 @@ class ColaboradoresControllers {
     await DeleteColaboradorService.execute(id);
     return res.status(200).json([]);
   }
+
+  public async findForNameOrIdentity(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    const data = req.params.data.trim();
+    const colaborador = await FindForNameOrIdentity.execute(data);
+    return res.status(200).json(colaborador);
+  }
 }
 
 export default new ColaboradoresControllers();

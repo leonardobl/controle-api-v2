@@ -29,4 +29,3 @@ ColaboradoresRoutes.get(
 ColaboradoresRoutes.delete("/:id", ColaboradoresController.delete);
 
 export default ColaboradoresRoutes;
-git;
