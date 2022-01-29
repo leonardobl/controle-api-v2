@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import CreateNotebookService from "../services/CreateNotebookService";
+import DeleteNotebookService from "../services/DeleteNotebookService";
 import IndexNotebookService from "../services/IndexNotebooksService";
 import UpdateNotebookService from "../services/UpdateNotebookService";
 

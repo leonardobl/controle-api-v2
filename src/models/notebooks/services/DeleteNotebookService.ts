@@ -3,7 +3,7 @@ import { getCustomRepository } from "typeorm";
 import AppError from "../../../shared/errors/AppError";
 import NotebooksCustomRepository from "../typeorm/repository";
 
-class DeleteUpdateService {
+class DeleteNotebookService {
   public async execute(id: string) {
     const notebookRepository = getCustomRepository(NotebooksCustomRepository);
     const notebook = await notebookRepository.findOne({ where: { id } });
@@ -14,4 +14,4 @@ class DeleteUpdateService {
   }
 }
 
-export default new DeleteUpdateService();
+export default new DeleteNotebookService();
