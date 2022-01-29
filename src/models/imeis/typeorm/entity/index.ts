@@ -18,7 +18,7 @@ class Imeis {
   imei1: string;
 
   @Column("varchar", { nullable: true })
-  imei2: string;
+  imei2: string | null;
 
   @OneToOne(() => Celulares)
   celular: Celulares;

@@ -33,11 +33,11 @@ class Colaboradores {
 
   @OneToOne(() => Celulares, { eager: true })
   @JoinColumn()
-  celular: Celulares;
+  celular: Celulares | null;
 
   @OneToOne(() => Notebooks, { eager: true })
   @JoinColumn()
-  notebook: Notebooks;
+  notebook: Notebooks | null;
 
   @Column("varchar")
   nome: string;

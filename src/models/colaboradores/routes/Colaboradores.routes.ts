@@ -1,6 +1,7 @@
 import { celebrate } from "celebrate";
 import express from "express";
 
+import multerMiddleware from "../../../shared/middlewares/multerConfig";
 import celebrateCreateConfig from "../configs/celebrateCreateConfig";
 import ColaboradoresController from "../controller/index";
 
@@ -14,6 +15,10 @@ ColaboradoresRoutes.post(
   ColaboradoresController.create
 );
 
-ColaboradoresRoutes.put("/:id", ColaboradoresController.update);
+ColaboradoresRoutes.put(
+  "/:id",
+  multerMiddleware.single("file"),
+  ColaboradoresController.update
+);
 
 export default ColaboradoresRoutes;

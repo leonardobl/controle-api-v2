@@ -7,7 +7,7 @@ import { ImeisCustomRepository } from "../typeorm/repository";
 interface IImei {
   id: string;
   imei1: string;
-  imei2?: string;
+  imei2?: string | null;
 }
 
 class UpdateImeiService {
@@ -28,7 +28,7 @@ class UpdateImeiService {
     if (!Imei.imei2) {
       const data = {} as IImei;
       Object.assign(data, Imei);
-      data.imei2 = "";
+      data.imei2 = null;
 
       const newImei = imeisRepository.merge(imeiOld, data);
       await imeisRepository.save(newImei);
