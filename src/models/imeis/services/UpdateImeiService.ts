@@ -24,6 +24,18 @@ class UpdateImeiService {
     const imeiOld = await imeisRepository.findById(Imei.id);
 
     if (!imeiOld) throw new AppError("Imei not found");
+    console.log(Imei);
+
+    if (!Imei.imei2) {
+      const data = {} as IImei;
+      Object.assign(data, Imei);
+      data.imei2 = " ";
+
+      console.log("Aqui");
+      const newImei = imeisRepository.merge(imeiOld, data);
+      await imeisRepository.save(newImei);
+      return newImei;
+    }
 
     const newImei = imeisRepository.merge(imeiOld, Imei);
     await imeisRepository.save(newImei);
