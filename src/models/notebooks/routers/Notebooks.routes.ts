@@ -1,6 +1,7 @@
 import { celebrate } from "celebrate";
 import express from "express";
 
+import multerMiddleware from "../../../shared/middlewares/multerConfig";
 import celebrateConfig from "../configs/celebratePostConfig";
 import NotebooksController from "../controller";
 
@@ -14,6 +15,10 @@ NotebooksRoutes.post(
   NotebooksController.create
 );
 
-NotebooksRoutes.put("/:id", NotebooksController.update);
+NotebooksRoutes.put(
+  "/:id",
+  multerMiddleware.single("file"),
+  NotebooksController.update
+);
 
 export default NotebooksRoutes;
