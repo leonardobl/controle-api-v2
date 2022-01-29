@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import CreateColaboradoresService from "../services/CreateColaboradoresService";
+import DeleteColaboradorService from "../services/DeleteColaboradorService";
 import IndexColaboradoresService from "../services/IndexColaboradoresService";
 import UpdateColaboradorService from "../services/UpdateColaboradorService";
 
@@ -44,6 +45,7 @@ class ColaboradoresControllers {
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
     await DeleteColaboradorService.execute(id);
+    return res.status(200).json([]);
   }
 }
 
