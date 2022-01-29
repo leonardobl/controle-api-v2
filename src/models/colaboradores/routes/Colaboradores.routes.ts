@@ -21,6 +21,12 @@ ColaboradoresRoutes.put(
   ColaboradoresController.update
 );
 
+ColaboradoresRoutes.get(
+  "/:data",
+  ColaboradoresController.findForNameOrIdentity
+);
+
 ColaboradoresRoutes.delete("/:id", ColaboradoresController.delete);
 
 export default ColaboradoresRoutes;
+git;
