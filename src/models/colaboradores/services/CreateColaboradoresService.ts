@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 
 import AppError from "../../../shared/errors/AppError";
+import { criaUserName } from "../configs/criaUser";
 import Colaboradores from "../typeorm/entity";
 import ColaboradoresRepository from "../typeorm/repository";
 
@@ -8,6 +9,7 @@ interface IRequest {
   identificacao: string;
   nome: string;
   cargo?: string;
+  username?: string;
 }
 
 class CreateColaboradoresService {
@@ -22,6 +24,7 @@ class CreateColaboradoresService {
       identificacao,
       nome: nome.trim().toUpperCase(),
       cargo: cargo?.trim()?.toUpperCase(),
+      username: criaUserName(nome),
     });
 
     const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);
