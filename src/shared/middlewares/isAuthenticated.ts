@@ -4,6 +4,12 @@ import { verify } from "jsonwebtoken";
 import jwtConfigs from "../configs/auth";
 import AppError from "../errors/AppError";
 
+interface IToken {
+  iat: number;
+  exp: number;
+  sub: string;
+}
+
 export default function isAuthenticated(
   req: Request,
   res: Response,
@@ -16,6 +22,11 @@ export default function isAuthenticated(
 
   try {
     const decoderToken = verify(token, jwtConfigs.jwt.secret);
+
+    const { exp, sub, iat } = decoderToken as IToken;
+
+    req.user = { id: sub };
+
     return next();
   } catch {
     throw new AppError("Invalid token");
