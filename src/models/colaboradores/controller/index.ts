@@ -1,4 +1,3 @@
-import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 
 import CreateColaboradoresService from "../services/CreateColaboradoresService";
