@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
 
+import authConfig from "../../../shared/configs/auth";
 import AppError from "../../../shared/errors/AppError";
 import Colaboradores from "../typeorm/entity";
 import ColaboradoresRepository from "../typeorm/repository";
@@ -30,9 +31,9 @@ class LoginService {
 
     if (!isValid) throw new AppError("UserName/Password incorrect");
 
-    const token = jwt.sign({}, "3bc3e48365fd68eea05feca17b43ee7f", {
+    const token = jwt.sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: "1d",
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
     return { user, token };
