@@ -22,12 +22,9 @@ class LoginService {
     const userRepository = getCustomRepository(ColaboradoresRepository);
     const user = await userRepository.findOne({ username });
 
-    console.log(user);
     if (!user) throw new AppError("UserName/Password incorrect");
 
     const isValid = await bcrypt.compare(password, user.password);
-
-    console.log(isValid);
 
     if (!isValid) throw new AppError("UserName/Password incorrect");
 
