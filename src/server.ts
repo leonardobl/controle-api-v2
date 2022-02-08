@@ -16,8 +16,6 @@ app.use(express.json());
 app.use("/api", Routes);
 app.use("/public", express.static(path.resolve(__dirname, "..", "public")));
 
-console.log(path.resolve(__dirname, "..", "public"));
-
 app.use(errors());
 
 app.use(
