@@ -21,6 +21,7 @@ interface IColaborador {
   cargo?: string;
   celular?: string;
   notebook?: string;
+  autorizado?: boolean;
 }
 
 interface IUpdateColaborador {
@@ -34,6 +35,7 @@ interface IUpdateColaborador {
   cargo?: string;
   celular?: Celulares;
   notebook?: Notebooks;
+  autorizado?: boolean;
 }
 
 class UpdateColaboradorService {

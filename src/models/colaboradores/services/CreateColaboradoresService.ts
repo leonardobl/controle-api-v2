@@ -10,6 +10,7 @@ interface IRequest {
   nome: string;
   cargo?: string;
   username?: string;
+  autorizado?: boolean;
 }
 
 class CreateColaboradoresService {
@@ -17,6 +18,7 @@ class CreateColaboradoresService {
     identificacao,
     nome,
     cargo,
+    autorizado,
   }: IRequest): Promise<Colaboradores> {
     const data = {} as IRequest;
 
@@ -25,6 +27,7 @@ class CreateColaboradoresService {
       nome: nome.trim().toUpperCase(),
       cargo: cargo?.trim()?.toUpperCase(),
       username: criaUserName(nome),
+      autorizado,
     });
 
     const ColaboradorRepository = getCustomRepository(ColaboradoresRepository);

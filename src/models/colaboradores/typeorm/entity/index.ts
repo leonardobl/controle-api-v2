@@ -31,6 +31,9 @@ class Colaboradores {
   @Column({ type: "varchar", nullable: true })
   password: string;
 
+  @Column({ type: "boolean", default: false, nullable: true })
+  autorizado: boolean;
+
   @OneToOne(() => Celulares, { eager: true })
   @JoinColumn()
   celular: Celulares | null;

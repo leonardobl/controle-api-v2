@@ -12,7 +12,7 @@ ColaboradoresRoutes.get("/", ColaboradoresController.index);
 
 ColaboradoresRoutes.post(
   "/",
-  isAuthenticated,
+  // isAuthenticated,
   celebrate(celebrateCreateConfig),
   ColaboradoresController.create
 );

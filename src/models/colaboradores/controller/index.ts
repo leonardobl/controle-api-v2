@@ -17,6 +17,7 @@ interface IColaborador {
   cargo?: string;
   celular?: string;
   notebook?: string;
+  autorizado?: boolean;
 }
 
 class ColaboradoresControllers {
