@@ -37,7 +37,13 @@ class UpdateCelularService {
       throw new AppError("Celular not found");
     }
 
-    if (celularOld.imgPath) await removeFile(celularOld.imgPath);
+    try {
+      if (data.imgPath) {
+        if (celularOld.imgPath) await removeFile(celularOld.imgPath);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     const celularUpdated = await celularRepository.merge(celularOld, data);
     await celularRepository.save(celularUpdated);

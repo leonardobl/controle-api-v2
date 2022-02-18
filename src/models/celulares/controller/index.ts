@@ -29,10 +29,12 @@ class CelularesControllers {
   public async update(req: Request, res: Response): Promise<Response> {
     let data = {} as ICelular;
     data = { ...req.body };
+
     if (req.file) {
       data.imgName = req.file.filename;
       data.imgPath = req.file.path;
     }
+
     const celularUpdated = await UpdateCelularService.execute(data);
     return res.status(200).json(celularUpdated);
   }
