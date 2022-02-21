@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use("/api", Routes);
-app.use("/public", express.static(path.resolve(__dirname, "..", "public")));
+app.use("/public", express.static("public"));
 
 app.use(errors());
 
