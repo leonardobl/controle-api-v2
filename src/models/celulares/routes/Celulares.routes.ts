@@ -7,7 +7,7 @@ const CelularesRoutes = express.Router();
 
 CelularesRoutes.get("/", CelularesControllers.index);
 
-CelularesRoutes.get("/:imei1/:imei2?", CelularesControllers.create);
+CelularesRoutes.post("/", CelularesControllers.create);
 
 CelularesRoutes.put(
   "/",

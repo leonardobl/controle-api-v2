@@ -23,7 +23,7 @@ class CreateCelularService {
     const dataImeis = {} as IImei;
     const data = {} as ICelular;
 
-    Object.assign(dataImeis, req.params);
+    Object.assign(dataImeis, { imei1: req.body.imei1, imei2: req.body.imei2 });
 
     const celularesRepository = getCustomRepository(CelularesCustomRespository);
 
